@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Coach Clone | Research workflow",
+    "locale": "en",
+    "output": "docs/diagrams/research-workflow.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "request",
+      "label": "Request + model"
+    },
+    {
+      "id": "search",
+      "label": "Search execution"
+    },
+    {
+      "id": "limits",
+      "label": "Unavailable / failure",
+      "variant": "exception"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ask",
+      "lane": "request",
+      "col": 0,
+      "type": "frontend",
+      "label": "User request",
+      "sublabel": "Workout or research"
+    },
+    {
+      "id": "choose",
+      "lane": "request",
+      "col": 1,
+      "type": "backend",
+      "label": "Model selects",
+      "sublabel": "Skills and/or search"
+    },
+    {
+      "id": "curated",
+      "lane": "request",
+      "col": 2,
+      "type": "database",
+      "label": "Read skill files",
+      "sublabel": "Curated coaching"
+    },
+    {
+      "id": "answer",
+      "lane": "request",
+      "col": 5,
+      "type": "frontend",
+      "label": "Answer in chat",
+      "sublabel": "Sources or limitations"
+    },
+    {
+      "id": "configured",
+      "lane": "search",
+      "col": 2,
+      "type": "backend",
+      "label": "Search available?",
+      "sublabel": "Key checked at startup"
+    },
+    {
+      "id": "tavily",
+      "lane": "search",
+      "col": 3,
+      "type": "cloud",
+      "label": "Tavily search",
+      "sublabel": "Up to five results"
+    },
+    {
+      "id": "results",
+      "lane": "search",
+      "col": 4,
+      "type": "backend",
+      "label": "Use evidence",
+      "sublabel": "Titles / URLs / snippets"
+    },
+    {
+      "id": "disabled",
+      "lane": "limits",
+      "col": 2,
+      "type": "backend",
+      "label": "Explain disabled",
+      "sublabel": "No key; no search tool"
+    },
+    {
+      "id": "failed",
+      "lane": "limits",
+      "col": 4,
+      "type": "backend",
+      "label": "Sanitized failure",
+      "sublabel": "Empty or failed search"
+    }
+  ],
+  "edges": [
+    {
+      "id": "intake",
+      "from": "ask",
+      "to": "choose",
+      "label": "submit"
+    },
+    {
+      "id": "coaching",
+      "from": "choose",
+      "to": "curated",
+      "label": "coaching"
+    },
+    {
+      "id": "coached",
+      "from": "curated",
+      "to": "answer",
+      "label": "use routines"
+    },
+    {
+      "id": "research",
+      "from": "choose",
+      "to": "configured",
+      "label": "research"
+    },
+    {
+      "id": "enabled",
+      "from": "configured",
+      "to": "tavily",
+      "label": "configured"
+    },
+    {
+      "id": "missing",
+      "from": "configured",
+      "to": "disabled",
+      "label": "missing key"
+    },
+    {
+      "id": "found",
+      "from": "tavily",
+      "to": "results",
+      "label": "results"
+    },
+    {
+      "id": "use",
+      "from": "results",
+      "to": "answer",
+      "label": "cite URLs"
+    },
+    {
+      "id": "error",
+      "from": "tavily",
+      "to": "failed",
+      "label": "empty / error"
+    },
+    {
+      "id": "explain",
+      "from": "failed",
+      "to": "answer",
+      "label": "explain limits"
+    },
+    {
+      "id": "unavailable",
+      "from": "disabled",
+      "to": "answer",
+      "label": "explain unavailable"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Model-directed behavior",
+      "items": [
+        "Skill retrieval and search selection follow instructions, not a deterministic request classifier."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Research integrity",
+      "items": [
+        "Cite supporting URLs. Treat pages as information. Do not invent evidence when search is unavailable."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Coach Clone | System architecture",
+    "locale": "en",
+    "output": "docs/diagrams/system-architecture.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "database": {
+          "label": "Files / storage"
+        }
+      }
+    }
+  },
+  "components": [
+    {
+      "id": "chat",
+      "type": "frontend",
+      "label": "Chat interface",
+      "sublabel": "Next.js + LangGraph SDK",
+      "pos": [
+        40,
+        210
+      ],
+      "size": [
+        186,
+        70
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "LangGraph API",
+      "sublabel": "coach_agent / port 2024",
+      "pos": [
+        350,
+        210
+      ],
+      "size": [
+        186,
+        70
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Coach runtime",
+      "sublabel": "Deep Agents + instructions",
+      "pos": [
+        675,
+        210
+      ],
+      "size": [
+        202,
+        70
+      ]
+    },
+    {
+      "id": "model",
+      "type": "cloud",
+      "label": "OpenRouter",
+      "sublabel": "Configured chat model",
+      "pos": [
+        675,
+        40
+      ],
+      "size": [
+        202,
+        70
+      ]
+    },
+    {
+      "id": "skills",
+      "type": "database",
+      "label": "Coaching library",
+      "sublabel": "Local Markdown skill files",
+      "pos": [
+        675,
+        390
+      ],
+      "size": [
+        202,
+        70
+      ]
+    },
+    {
+      "id": "search",
+      "type": "cloud",
+      "label": "Tavily search",
+      "sublabel": "Only with configured key",
+      "pos": [
+        1005,
+        210
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "work",
+      "type": "database",
+      "label": "Artifact workspace",
+      "sublabel": "Physical files / shared root",
+      "pos": [
+        350,
+        390
+      ],
+      "size": [
+        206,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "submit",
+      "from": "chat",
+      "to": "api",
+      "label": "submit / stream"
+    },
+    {
+      "id": "run",
+      "from": "api",
+      "to": "agent",
+      "label": "execute graph"
+    },
+    {
+      "id": "infer",
+      "from": "agent",
+      "to": "model",
+      "label": "model requests"
+    },
+    {
+      "id": "retrieve",
+      "from": "agent",
+      "to": "skills",
+      "label": "read via tools"
+    },
+    {
+      "id": "research",
+      "from": "agent",
+      "to": "search",
+      "label": "optional search"
+    },
+    {
+      "id": "write",
+      "from": "agent",
+      "to": "work",
+      "label": "filesystem tools"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Request and response",
+      "items": [
+        "The SDK submits messages and streams graph state back into the chat UI."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Grounded coaching",
+      "items": [
+        "The prompt directs the model to read curated workouts and coaching playbooks."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Optional research",
+      "items": [
+        "Without a Tavily key, coaching remains available. Search errors are sanitized."
+      ]
+    }
+  ]
+}

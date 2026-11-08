@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Coach Clone | Knowledge and state",
+    "locale": "en",
+    "output": "docs/diagrams/knowledge-and-state.html",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "database": {
+          "label": "Files / storage"
+        }
+      }
+    }
+  },
+  "components": [
+    {
+      "id": "browser",
+      "type": "frontend",
+      "label": "Browser settings",
+      "sublabel": "Connection configuration",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "settings",
+      "type": "database",
+      "label": "localStorage",
+      "sublabel": "Deployment / assistant / key",
+      "pos": [
+        360,
+        40
+      ],
+      "size": [
+        210,
+        70
+      ]
+    },
+    {
+      "id": "chat",
+      "type": "frontend",
+      "label": "Chat + file panel",
+      "sublabel": "Reads streamed graph values",
+      "pos": [
+        40,
+        245
+      ],
+      "size": [
+        190,
+        70
+      ]
+    },
+    {
+      "id": "state",
+      "type": "backend",
+      "label": "LangGraph state",
+      "sublabel": "messages / todos / files",
+      "pos": [
+        360,
+        245
+      ],
+      "size": [
+        210,
+        70
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Coach runtime",
+      "sublabel": "Filesystem-backed agent",
+      "pos": [
+        710,
+        245
+      ],
+      "size": [
+        205,
+        70
+      ]
+    },
+    {
+      "id": "skill",
+      "type": "database",
+      "label": "Coaching skill",
+      "sublabel": "SKILL.md + Markdown files",
+      "pos": [
+        710,
+        40
+      ],
+      "size": [
+        205,
+        70
+      ]
+    },
+    {
+      "id": "workspace",
+      "type": "database",
+      "label": "workspace/",
+      "sublabel": "Shared physical artifacts",
+      "pos": [
+        710,
+        450
+      ],
+      "size": [
+        205,
+        70
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "config",
+      "from": "browser",
+      "to": "settings",
+      "label": "save / load"
+    },
+    {
+      "id": "values",
+      "from": "state",
+      "to": "chat",
+      "label": "stream values"
+    },
+    {
+      "id": "edit",
+      "from": "chat",
+      "to": "state",
+      "label": "edit state files"
+    },
+    {
+      "id": "runtime",
+      "from": "agent",
+      "to": "state",
+      "label": "graph values"
+    },
+    {
+      "id": "read",
+      "from": "agent",
+      "to": "skill",
+      "label": "read via tools"
+    },
+    {
+      "id": "artifacts",
+      "from": "agent",
+      "to": "workspace",
+      "label": "read / write"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Knowledge",
+      "items": [
+        "Curated Markdown is retrieved through agent filesystem tools; no vector database is configured."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Two kinds of files",
+      "items": [
+        "The UI edits state.files. No project bridge synchronizes it with physical workspace files."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Local development limits",
+      "items": [
+        "The physical workspace is shared and virtual_mode=False is not a filesystem sandbox."
+      ]
+    }
+  ]
+}

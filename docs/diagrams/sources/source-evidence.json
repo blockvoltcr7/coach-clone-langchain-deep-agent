@@ -1,0 +1,173 @@
+{
+  "basis": "Inspected working-tree files; no Git metadata exists in the supplied folder. Not commit-pinned repository evidence.",
+  "files": [
+    {
+      "path": "src/agent.py",
+      "sha256": "34a8aeab1b96cd476bf2d612119cc00c89e406766291da9e7d292a7c5e3f836e",
+      "ranges": [
+        [
+          13,
+          25
+        ],
+        [
+          27,
+          61
+        ]
+      ]
+    },
+    {
+      "path": "src/tools.py",
+      "sha256": "fb88a54f01c7791d2148d67f271cb15df08e216e00cc9833a07854adfad5da8d",
+      "ranges": [
+        [
+          14,
+          35
+        ],
+        [
+          41,
+          102
+        ]
+      ]
+    },
+    {
+      "path": "src/config.py",
+      "sha256": "5afba2262fb3d2ac93e9a3fda98cf675c088a21d482bfe747e31fddcaa59a6e0",
+      "ranges": [
+        [
+          12,
+          31
+        ]
+      ]
+    },
+    {
+      "path": "langgraph.json",
+      "sha256": "dce27b00f6d224935fd7ca2c3e45e940cd8a09ce64db1ab43788246bdc99cc38",
+      "ranges": [
+        [
+          1,
+          7
+        ]
+      ]
+    },
+    {
+      "path": "run_server.sh",
+      "sha256": "35e05c0872feef819dc19afb1b5f8902c85a44f8d1342b0df0b35fe6edf69d8f",
+      "ranges": [
+        [
+          10,
+          13
+        ]
+      ]
+    },
+    {
+      "path": "skills/fitness-coach/SKILL.md",
+      "sha256": "8f9ec73ed8cdf73e01268b1cc066ea0dfc9abcae24ea7a9d938120471d1bf65d",
+      "ranges": [
+        [
+          10,
+          36
+        ]
+      ]
+    },
+    {
+      "path": "deep-agents-ui/src/app/hooks/useChat.ts",
+      "sha256": "a3ee02ac987f092386bfa3143bef6f2df9f963b15e45d3a91588799425ee4675",
+      "ranges": [
+        [
+          16,
+          24
+        ],
+        [
+          40,
+          70
+        ],
+        [
+          102,
+          108
+        ],
+        [
+          148,
+          158
+        ]
+      ]
+    },
+    {
+      "path": "deep-agents-ui/src/lib/config.ts",
+      "sha256": "b8f5af8bc32a0d0752daef9c2d5f07aec827edde491ff5f95a0f43dd05a7ba2e",
+      "ranges": [
+        [
+          1,
+          24
+        ]
+      ]
+    },
+    {
+      "path": "deep-agents-ui/src/providers/ClientProvider.tsx",
+      "sha256": "e70700bb5614509f272b1f9aa84f31de4541601397e04e9e0552dc08808465b9",
+      "ranges": [
+        [
+          18,
+          31
+        ]
+      ]
+    }
+  ],
+  "coverage": {
+    "system-architecture": {
+      "chat": [
+        "deep-agents-ui/src/app/hooks/useChat.ts",
+        "deep-agents-ui/src/providers/ClientProvider.tsx"
+      ],
+      "api": [
+        "langgraph.json",
+        "run_server.sh"
+      ],
+      "agent": [
+        "src/agent.py"
+      ],
+      "model": [
+        "src/config.py"
+      ],
+      "skills": [
+        "skills/fitness-coach/SKILL.md",
+        "src/agent.py"
+      ],
+      "search": [
+        "src/tools.py",
+        "src/agent.py"
+      ],
+      "work": [
+        "src/agent.py"
+      ]
+    },
+    "research-workflow": {
+      "request_and_selection": [
+        "deep-agents-ui/src/app/hooks/useChat.ts",
+        "src/agent.py"
+      ],
+      "curated_coaching": [
+        "skills/fitness-coach/SKILL.md",
+        "src/agent.py"
+      ],
+      "search_and_availability": [
+        "src/tools.py",
+        "src/agent.py"
+      ],
+      "failure_handling": [
+        "src/tools.py"
+      ]
+    },
+    "knowledge-and-state": {
+      "browser_and_settings": [
+        "deep-agents-ui/src/lib/config.ts"
+      ],
+      "chat_and_graph_values": [
+        "deep-agents-ui/src/app/hooks/useChat.ts"
+      ],
+      "agent_skill_and_workspace": [
+        "src/agent.py",
+        "skills/fitness-coach/SKILL.md"
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "coach_agent": "./src/agent.py:get_coach_agent"
+  },
+  "env": ".env"
+}

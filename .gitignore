@@ -1,0 +1,26 @@
+# Environments
+.env
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+*.DS_Store
+
+# Local data & UI
+workspace/
+deep-agents-ui/.git/
+deep-agents-ui/node_modules/
+deep-agents-ui/.next/
+deep-agents-ui/out/
+deep-agents-ui/build/
+deep-agents-ui/.vercel/
+.langgraph_api/
+
+# Local diagram authoring and validation receipts
+.archify/
+docs/diagrams/*.delivery.json
+docs/diagrams/*.finalize.json
+docs/diagrams/*.finalize-summary.json
+docs/diagrams/*.browser-check.json
